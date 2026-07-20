@@ -45,8 +45,8 @@ export default function App() {
     <h1>Dynamic Table</h1>
 
    <EditableTable
-   tableData={tableData}
-   onCellChange={handleCellChange}
+    tableData={tableData}
+    onCellChange={handleCellChange}
     />
     </main>
   );

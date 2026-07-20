@@ -1,4 +1,4 @@
-export default function EditableTable({ tableData })
+export default function EditableTable({ tableData, onCellChange })
 {
     const columns = tableData.columns;
     const data = tableData.data;
@@ -25,13 +25,17 @@ export default function EditableTable({ tableData })
         {/* columns array decided which fields exist */}
         {/* the point of this is to make table dynamic and reusable */}
 
-        {data.map((row) => (
+        {data.map((row, rowIndex) => (
             <div key={row.id}>
                 {columns.map((column) => (
-                    <span key={column.id}>
-                        {String(row[column.id])}{" "}
-                    </span>
-                ))}
+                    <input
+                        key={column.id}
+                        value={row[column.id] ?? ""}
+                        onChange={(event) => 
+                            onCellChange(rowIndex, column.id, event.target.value)
+                        }   
+                    />
+                ))}              
             </div>       
         ))}
         </div>
