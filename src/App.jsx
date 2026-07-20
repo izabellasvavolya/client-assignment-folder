@@ -13,22 +13,23 @@ export default function App() {
 
   /* We'll use useState so that React can remember the table data
   and update cell when it changes */
+  // create initial table data with 100 rows
   const [tableData, setTableData] = useState(() => createMockTableData(100));
 
-  function handleCellChange(rowId, columnId, newValue) {
+  function handleCellChange(rowIndex, columnId, newValue) {
     setTableData((prevTableData) => {
       // copy the previous table data
       const newTableData = [ ...prevTableData.data];
 
       // find the row that was changed
-      const oldRow = newTableData[rowId];
+      const oldRow = newTableData[rowIndex];
 
       if (!oldRow) { 
         return prevTableData; // row not found, return previous data
       }
 
       // copy changed row and update value
-      newTableData[rowId] = { ...oldRow, [columnId]: newValue, };
+      newTableData[rowIndex] = { ...oldRow, [columnId]: newValue, };
 
       // return new table data
       return {
