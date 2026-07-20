@@ -28,16 +28,51 @@ export default function EditableTable({ tableData, onCellChange })
         {data.map((row, rowIndex) => (
             <div key={row.id}>
                 {columns.map((column) => (
-                    <input
-                        key={column.id}
-                        value={row[column.id] ?? ""}
-                        onChange={(event) => 
-                            onCellChange(rowIndex, column.id, event.target.value)
-                        }   
-                    />
-                ))}              
+                    <div key ={column.id}>
+                        <CellEditor
+                            column={column}
+                            value={row[column.id]}
+                            onChange={(newValue) => 
+                               onCellChange(rowIndex, column.id, newValue)
+                }       />  
+                </div>
+                ))}        
             </div>       
         ))}
         </div>
     );
 }
+
+function CellEditor({ column, value, onChange }) {
+    // number column
+
+    if (column.type == "number") {
+        return (
+            <input
+                type="number"
+                value={value ?? ""}
+                onChange = {(event) => {
+                    const newValue = event.target.value;
+
+                    onChange(
+                        newValue === "" ? "" : Number(newValue)
+                    );
+                }}
+                />
+        );
+    }
+
+    // bool column
+    if (column.type == "boolean") {
+        return (
+            <input
+                type="checkbox"
+                checked = {Boolean(value)}
+                onChange = {(event) => 
+                    onChange(event.target.checked)}
+            />
+        );
+    }
+
+    
+                }
