@@ -18,7 +18,7 @@ export default function App() {
   function handleCellChange(rowId, columnId, newValue) {
     setTableData((prevTableData) => {
       // copy the previous table data
-      const newTableData = { ...prevTableData.data};
+      const newTableData = [ ...prevTableData.data];
 
       // find the row that was changed
       const oldRow = newTableData[rowId];
