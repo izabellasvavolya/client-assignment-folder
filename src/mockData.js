@@ -39,3 +39,27 @@ const columns = [
         ordialNo: 5,
     }
 ];
+
+// create example rows for table
+
+export function createMockTableData(rowCount = 100) {
+
+    const data = [];
+
+    for (let index = 0; index < rowCount; index++) {
+        const row = {
+            id: index + 1,
+            name: `Employee ${index + 1}`,
+            age: 21 + (index % 40),
+            department:
+              departmentOptions[index % departmentOptions.length],
+            active: index % 2 === 0,
+        };
+        data.push(row);
+    }
+        
+    return {
+        columns: columns,
+        data: data,
+    };
+}
