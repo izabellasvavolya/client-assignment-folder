@@ -13,6 +13,10 @@ export default function EditableTable({ tableData, onCellChange })
         visibleColumnIds.includes(column.id)
     );
 
+    const gridTemplateColumns = visibleColumns
+        .map((column) => `${column.width ?? 150}px`)
+        .join(" ");
+
     function toggleColumn(columnId) {
         setVisibleColumnIds((previousIds) =>
             previousIds.includes(columnId)
@@ -44,21 +48,27 @@ export default function EditableTable({ tableData, onCellChange })
              
             {/* columns title */}
             {/* go through every item in column array */}
-            <div>
+            <div
+                className = "table-row table-header"
+                style = {{ gridTemplateColumns }}
+            >
                 {visibleColumns.map((column) => (
-                    <strong key={column.id}>
-                        {column.title}{" "}
-                    </strong>))}
-
-            </div>
+                    <div className="table-cell" key={column.id}>
+                        <strong>{column.title}</strong>
+                    </div>
+                ))}
+            </div>    
 
         {/* columns array decided which fields exist */}
         {/* the point of this is to make table dynamic and reusable */}
 
         {data.map((row, rowIndex) => (
-            <div key={row.id}>
+            <div
+                className="table-row"
+                style= {{ gridTemplateColumns}}
+                key={row.id}>
                 {visibleColumns.map((column) => (
-                    <div key ={column.id}>
+                    <div className="table-cell" key ={column.id}>
                         <CellEditor
                             column={column}
                             value={row[column.id]}
