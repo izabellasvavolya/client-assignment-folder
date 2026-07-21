@@ -14,7 +14,7 @@ export default function App() {
   /* We'll use useState so that React can remember the table data
   and update cell when it changes */
   // create initial table data with 100 rows
-  const [tableData, setTableData] = useState(() => createMockTableData(100));
+  const [tableData, setTableData] = useState(() => createMockTableData(5000));
 
   function handleCellChange(rowIndex, columnId, newValue) {
     setTableData((prevTableData) => {
