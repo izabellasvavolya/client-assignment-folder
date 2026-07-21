@@ -72,7 +72,7 @@ export default function EditableTable({
       <h2>Employees</h2>
 
       {/* Show and hide column checkboxes */}
-      <div>
+      <div className = "column-contorls">
         {columns.map((column) => (
           <label key={column.id}>
             <input
@@ -149,17 +149,12 @@ export default function EditableTable({
                         >
                           <CellEditor
                             column={column}
-                            value={
-                              row[column.id]
-                            }
+                            value={row[column.id]}
+
                             onChange={(
                               newValue
                             ) =>
-                              onCellChange(
-                                rowIndex,
-                                column.id,
-                                newValue
-                              )
+                              onCellChange(rowIndex, column.id, newValue)
                             }
                           />
                         </div>
@@ -176,11 +171,7 @@ export default function EditableTable({
   );
 }
 
-function CellEditor({
-  column,
-  value,
-  onChange,
-}) {
+function CellEditor({column, value, onChange,}) {
   // Number column
   if (column.type === "number") {
     return (

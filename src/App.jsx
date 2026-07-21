@@ -71,7 +71,7 @@ export default function App() {
 
     <h1>Dynamic Table</h1>
 
-    <div>
+    <div className= "table-actions">
       <button onClick={handleSave}>Save</button>
       <button onClick={handleReset}>Reset</button>
     </div>
