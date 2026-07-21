@@ -1,7 +1,25 @@
+import {useState} from "react";
+
 export default function EditableTable({ tableData, onCellChange })
 {
     const columns = tableData.columns;
     const data = tableData.data;
+
+    const [visibleColumnIds, setVisibleColumnIds] = useState(() =>
+            columns.map((column) => column.id)
+    );
+
+    const visibleColumns = columns.filter((column) =>
+        visibleColumnIds.includes(column.id)
+    );
+
+    function toggleColumn(columnId) {
+        setVisibleColumnIds((previousIds) =>
+            previousIds.includes(columnId)
+                ? previousIds.filter((id) => id !== columnId)
+                : [...previousIds, columnId]
+        );
+    }
 
     //return jsx that react will display
 
@@ -10,11 +28,24 @@ export default function EditableTable({ tableData, onCellChange })
         <div>
             {/* table title */}
             <h2>Employees</h2>
+
+            <div>
+                {columns.map((column) => (
+                    <label key={column.id}>
+                        <input
+                            type="checkbox"
+                            checked={visibleColumnIds.includes(column.id)}
+                            onChange={() => toggleColumn(column.id)}
+                        />
+                        {column.title}
+                    </label>
+                ))}
+            </div>
              
             {/* columns title */}
             {/* go through every item in column array */}
             <div>
-                {columns.map((column) => (
+                {visibleColumns.map((column) => (
                     <strong key={column.id}>
                         {column.title}{" "}
                     </strong>))}
@@ -26,7 +57,7 @@ export default function EditableTable({ tableData, onCellChange })
 
         {data.map((row, rowIndex) => (
             <div key={row.id}>
-                {columns.map((column) => (
+                {visibleColumns.map((column) => (
                     <div key ={column.id}>
                         <CellEditor
                             column={column}
