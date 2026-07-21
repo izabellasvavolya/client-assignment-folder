@@ -21,3 +21,23 @@ main {
   padding: 4px;
   box-sizing: border-box;
 }
+
+.table-body {
+  overflow-y: auto;
+}
+
+.table-spacer {
+  position: relative;
+}
+
+.visible-rows {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.table-row {
+  align-items: center;
+  box-sizing: border-box;
+}
