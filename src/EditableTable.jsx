@@ -74,5 +74,21 @@ function CellEditor({ column, value, onChange }) {
         );
     }
 
-    
+    // selection column
+    if (column.type == "selection") {
+        return (
+            <select
+                value={value ?? ""}
+                onChange = {(event) => 
+                    onChange(event.target.value)
                 }
+                >
+                    {column.options.map((option) => (
+                        <option key={option} value={option}>
+                            {option}
+                        </option>
+                    ))}
+                </select>
+        );
+    }
+}
