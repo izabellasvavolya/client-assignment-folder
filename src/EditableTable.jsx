@@ -181,6 +181,10 @@ const visibleColumns = useMemo(
 
 function CellEditor({column, value, onChange,}) {
   // Number column
+  if (column.editable == false) 
+    {
+    return <span>{String(value)}</span>;
+  }
   if (column.type === "number") {
     return (
       <input

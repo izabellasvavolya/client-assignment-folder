@@ -26,6 +26,14 @@ const columns = [
     },
 
     {
+        id: "age",
+        title: "Age",
+        type: "number",
+        width: 100,
+        ordinalNo: 3,
+    },
+
+    {
         id: "department",
         title: "Department",
         type: "selection",
