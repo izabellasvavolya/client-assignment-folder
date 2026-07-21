@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 // table component
 import EditableTable from './EditableTable.jsx';

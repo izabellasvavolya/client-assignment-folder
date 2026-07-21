@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 const ROW_HEIGHT = 44;
 const TABLE_HEIGHT = 460;
@@ -17,13 +17,21 @@ export default function EditableTable({
     columns.map((column) => column.id)
   );
 
-  const visibleColumns = columns.filter((column) =>
-    visibleColumnIds.includes(column.id)
+  const visibleColumns = useMemo(
+    () =>
+      columns.filter((column) =>
+        visibleColumnIds.includes(column.id)
+      ),
+    [columns, visibleColumnIds]
   );
 
-  const gridTemplateColumns = visibleColumns
-    .map((column) => `${column.width ?? 150}px`)
-    .join(" ");
+    const gridTemplateColumns = useMemo(
+    () =>
+      visibleColumns
+        .map((column) => `${column.width ?? 150}px`)
+        .join(" "),
+    [visibleColumns]
+  );
 
   // Calculate which rows should be rendered
   const visibleRowCount = Math.ceil(
