@@ -14,7 +14,7 @@ const columns = [
         type: "number",
         editable: false, // we can't edit the ID column
         width: 80,
-        ordialNo: 1,
+        ordinalNo: 1,
     },
 
     {
@@ -22,7 +22,7 @@ const columns = [
         title: "Name",
         type: "string",
         width: 180,
-        ordialNo: 2,
+        ordinalNo: 2,
     },
 
     {
@@ -30,14 +30,14 @@ const columns = [
         title: "Department",
         type: "selection",
         width: 160,
-        ordialNo: 4,
+        ordinalNo: 4,
         options: departmentOptions
     },
     {   id: "active",
         title: "Active",
         type: "boolean",
         width: 100,
-        ordialNo: 5,
+        ordinalNo: 5,
     }
 ];
 
@@ -49,7 +49,7 @@ export function createMockTableData(rowCount = 100) {
 
     for (let index = 0; index < rowCount; index++) {
         const row = {
-            id: index + 1,
+            id: String(index + 1),
             name: `Employee ${index + 1}`,
             age: 21 + (index % 40),
             department:

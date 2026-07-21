@@ -11,19 +11,28 @@ export default function EditableTable({
   const columns = tableData.columns;
   const data = tableData.data;
 
+  const sortedColumns = useMemo(
+  () =>
+    [...columns].sort(
+      (firstColumn, secondColumn) =>
+        firstColumn.ordinalNo - secondColumn.ordinalNo
+    ),
+  [columns]
+);
+
   const [scrollTop, setScrollTop] = useState(0);
 
   const [visibleColumnIds, setVisibleColumnIds] = useState(() =>
-    columns.map((column) => column.id)
+    sortedColumns.map((column) => column.id)
   );
 
-  const visibleColumns = useMemo(
-    () =>
-      columns.filter((column) =>
-        visibleColumnIds.includes(column.id)
-      ),
-    [columns, visibleColumnIds]
-  );
+const visibleColumns = useMemo(
+  () =>
+    sortedColumns.filter((column) =>
+      visibleColumnIds.includes(column.id)
+    ),
+  [sortedColumns, visibleColumnIds]
+);
 
     const gridTemplateColumns = useMemo(
     () =>
@@ -72,16 +81,15 @@ export default function EditableTable({
       <h2>Employees</h2>
 
       {/* Show and hide column checkboxes */}
-      <div className = "column-contorls">
-        {columns.map((column) => (
+      <div className = "column-controls">
+        {sortedColumns.map((column) => (
           <label key={column.id}>
             <input
               type="checkbox"
               checked={visibleColumnIds.includes(
                 column.id
               )}
-              onChange={() =>
-                toggleColumn(column.id)
+              onChange={() => toggleColumn(column.id)
               }
             />
 
