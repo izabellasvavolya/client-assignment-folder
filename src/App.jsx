@@ -8,13 +8,31 @@ import { createMockTableData } from './mockData.js';
 
 import './App.css';
 
+const STORAGE_KEY = "tableData";
+
+function getInitialTableData() {
+  // check if we have saved data in local storage
+  const savedData = localStorage.getItem(STORAGE_KEY);
+  if (savedData) {
+    try {
+      return JSON.parse(savedData);
+    }
+    catch (error) {
+      console.error("Error parsing saved table data:", error);
+    }
+  }
+  return createMockTableData(5000); 
+  }
+
+  // default to 5000 rows if no saved data
+
 
 export default function App() { 
 
   /* We'll use useState so that React can remember the table data
   and update cell when it changes */
   // create initial table data with 100 rows
-  const [tableData, setTableData] = useState(() => createMockTableData(5000));
+  const [tableData, setTableData] = useState(getInitialTableData);
 
   function handleCellChange(rowIndex, columnId, newValue) {
     setTableData((prevTableData) => {
@@ -39,10 +57,24 @@ export default function App() {
     });
   }
 
+  function handleSave() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tableData));
+  }
+
+  function handleReset() {
+    localStorage.removeItem(STORAGE_KEY);
+    setTableData(createMockTableData(5000));
+  }
+
   return (
     <main>
 
     <h1>Dynamic Table</h1>
+
+    <div>
+      <button onClick={handleSave}>Save</button>
+      <button onClick={handleReset}>Reset</button>
+    </div>
 
    <EditableTable
     tableData={tableData}
