@@ -31,7 +31,7 @@ const columns = [
         type: "selection",
         width: 160,
         ordialNo: 4,
-        optins: departmentOptions
+        options: departmentOptions
     },
     {   id: "active",
         title: "Active",

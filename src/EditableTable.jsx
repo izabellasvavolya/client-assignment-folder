@@ -3,11 +3,10 @@ export default function EditableTable({ tableData, onCellChange })
     const columns = tableData.columns;
     const data = tableData.data;
 
-    // return jsx that react will display
+    //return jsx that react will display
 
     return (
         
-        // this contains entire table
         <div>
             {/* table title */}
             <h2>Employees</h2>
@@ -46,7 +45,7 @@ export default function EditableTable({ tableData, onCellChange })
 function CellEditor({ column, value, onChange }) {
     // number column
 
-    if (column.type == "number") {
+    if (column.type === "number") {
         return (
             <input
                 type="number"
@@ -63,7 +62,7 @@ function CellEditor({ column, value, onChange }) {
     }
 
     // bool column
-    if (column.type == "boolean") {
+    if (column.type === "boolean") {
         return (
             <input
                 type="checkbox"
@@ -75,7 +74,7 @@ function CellEditor({ column, value, onChange }) {
     }
 
     // selection column
-    if (column.type == "selection") {
+    if (column.type === "selection") {
         return (
             <select
                 value={value ?? ""}
