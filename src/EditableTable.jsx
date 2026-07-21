@@ -77,8 +77,11 @@ const visibleColumns = useMemo(
   }
 
   return (
-    <div>
-      <h2>Employees</h2>
+     <section className="table-card">
+        <div className="table-title">
+            <h2>Employees</h2>
+            <span>{data.length.toLocaleString()} rows</span>
+        </div>
 
       {/* Show and hide column checkboxes */}
       <div className = "column-controls">
@@ -175,7 +178,7 @@ const visibleColumns = useMemo(
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

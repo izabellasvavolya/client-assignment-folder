@@ -66,20 +66,30 @@ export default function App() {
     setTableData(createMockTableData(5000));
   }
 
-  return (
-    <main>
 
-    <h1>Dynamic Table</h1>
+return (
+  <main className="app">
+    <div className="page-header">
+      <div>
+        <h1>Dynamic Table</h1>
+        <p>Edit employee data and choose which columns to display.</p>
+      </div>
 
-    <div className= "table-actions">
-      <button onClick={handleSave}>Save</button>
-      <button onClick={handleReset}>Reset</button>
+      <div className="table-actions">
+        <button className="save-button" onClick={handleSave}>
+          Save changes
+        </button>
+
+        <button className="reset-button" onClick={handleReset}>
+          Reset
+        </button>
+      </div>
     </div>
 
-   <EditableTable
-    tableData={tableData}
-    onCellChange={handleCellChange}
+    <EditableTable
+      tableData={tableData}
+      onCellChange={handleCellChange}
     />
-    </main>
-  );
+  </main>
+);
 }
