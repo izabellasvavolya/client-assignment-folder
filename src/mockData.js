@@ -12,6 +12,7 @@ const columns = [
         id: "id", 
         title: "ID",
         type: "number",
+        editable: false, // we can't edit the ID column
         width: 80,
         ordialNo: 1,
     },
