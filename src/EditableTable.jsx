@@ -1,13 +1,16 @@
 import { useState, useMemo } from "react";
 
+// height of one table row
 const ROW_HEIGHT = 44;
-const TABLE_HEIGHT = 460;
+// height of scrollable table area
+const TABLE_HEIGHT = 800;
+// extra rows to render above and below visible rows
+// for smoother scrolling experience
 const OVERSCAN_ROWS = 5;
 
-export default function EditableTable({
-  tableData,
-  onCellChange,
-}) {
+
+export default function EditableTable({tableData,onCellChange,}) {
+   
   const columns = tableData.columns;
   const data = tableData.data;
 
