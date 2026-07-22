@@ -1,16 +1,38 @@
-# React + Vite
+# Dynamic Editable Table
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A reusable editable table built with React and JavaScript.
+Table supports different column types, column visibility controls, direct cell editing, local saving and optimized rendering for large datasets.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- String, number, boolean and selection list columns
+- Direct editing inside table cells
+- Show and hide columns
+- Save changes locally using `localStorage`
+- Reset the table to the original mock data
+- Supports 5,000 rows
+- Virtualized rendering for better performance
+- Schema driven and reusable with different datasets
+- Columns displayed according to `ordinalNo`
+- Optional column widths
+- Read-only columns
 
-## React Compiler
+## Schema changes
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Two properties were added:
 
-## Expanding the ESLint configuration
+### `options?: string[]`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Used only for columns with the `selection` type. It contains the allowed values for the dropdown.
+
+Example:
+
+```js
+{
+  id: "department",
+  ordinalNo: 4,
+  title: "Department",
+  type: "selection",
+  width: 160,
+  options: ["Engineering", "Sales", "Support", "Marketing"]
+}
