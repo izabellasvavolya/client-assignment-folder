@@ -92,9 +92,11 @@ return (
           Reset
         </button>
 
-        <span className="save-status">
+        {saveMessage && (
+           <span key={saveMessage} className="save-status">
             {saveMessage}
-        </span>
+  </span>
+)}
       </div>
     </div>
 
