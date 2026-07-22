@@ -13,9 +13,10 @@ export default function EditableTable({tableData,onCellChange,}) {
    
   const columns = tableData.columns;
   const data = tableData.data;
-
-  const sortedColumns = useMemo(
-  () =>
+  
+  // sort columns according to their ordinalNo 
+  // copy the array to avoid mutating the original columns array
+  const sortedColumns = useMemo(() =>   // useMemo to avoid unnecessary re-sorting on every render
     [...columns].sort(
       (firstColumn, secondColumn) =>
         firstColumn.ordinalNo - secondColumn.ordinalNo
@@ -23,21 +24,25 @@ export default function EditableTable({tableData,onCellChange,}) {
   [columns]
 );
 
+    // stores how far user scrolled down the table
   const [scrollTop, setScrollTop] = useState(0);
-
+  
+  // stores id of visible columns, default to all columns visible
   const [visibleColumnIds, setVisibleColumnIds] = useState(() =>
     sortedColumns.map((column) => column.id)
   );
 
-const visibleColumns = useMemo(
-  () =>
+  // create an array of visible columns based on visibleColumnIds state
+  // updates only when sortedColumns or visibleColumnIds change
+const visibleColumns = useMemo(() =>
     sortedColumns.filter((column) =>
       visibleColumnIds.includes(column.id)
     ),
   [sortedColumns, visibleColumnIds]
 );
 
-    const gridTemplateColumns = useMemo(
+// css for visible colums
+const gridTemplateColumns = useMemo(
     () =>
       visibleColumns
         .map((column) => `${column.width ?? 180}px`)
@@ -45,12 +50,13 @@ const visibleColumns = useMemo(
     [visibleColumns]
   );
 
-  // Calculate which rows should be rendered
+  // Calculate which rows should be rendered and fit inside table
   const visibleRowCount = Math.ceil(TABLE_HEIGHT / ROW_HEIGHT);
 
+  // calculate first row that should be rendered
   const startIndex = Math.max(
     0,
-    Math.floor(scrollTop / ROW_HEIGHT) - OVERSCAN_ROWS
+    Math.floor(scrollTop / ROW_HEIGHT) - OVERSCAN_ROWS // add a few extra rows before
   );
 
   const endIndex = Math.min(
