@@ -166,7 +166,7 @@ body {
   color: white;
   font-size: 14px;
   font-weight: bold;
-  animation: fade-in 0.7s ease;
+  animation: fade-in-out 0.7s ease;
 }
 
 @keyframes fade-in {

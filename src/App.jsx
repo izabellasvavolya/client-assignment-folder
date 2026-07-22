@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useEffect, use } from 'react';
 
 // table component
 import EditableTable from './EditableTable.jsx';
@@ -36,6 +36,20 @@ export default function App() {
 
   // unsaved messages status
   const [saveMessage, setSaveMessage] = useState("");
+
+  useEffect(() => {
+    if (
+      saveMessage === "You have unsaved changes." || saveMessage === ""
+    ) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setSaveMessage("");
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, [saveMessage]);
 
   function handleCellChange(rowIndex, columnId, newValue) {
     setSaveMessage("You have unsaved changes.");
