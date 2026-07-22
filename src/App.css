@@ -19,19 +19,33 @@ body {
 .page-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   gap: 24px;
-  margin-bottom: 28px;
+
+  margin-bottom: 24px;
+  padding: 22px 24px;
+
+  background: linear-gradient(
+    135deg,
+    #1b1f2a,
+    #151821
+  );
+
+  border: 1px solid #303646;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
 }
 
 .page-header h1 {
-  margin: 0 0 8px;
-  font-size: 36px;
+  margin: 0 0 6px;
+  font-size: 35px;
+  letter-spacing: -0.5px;
 }
 
 .page-header p {
   margin: 0;
   color: #a8adbd;
+  font-size: 20px;
 }
 
 .table-actions {
@@ -116,12 +130,20 @@ body {
 }
 
 .table-header {
-  background-color: #252936;
-  color: #d5d9e4;
+  background: linear-gradient(
+    90deg,
+    #262b3a,
+    #222735
+  );
+  color: #e7eaf2;
+  border-bottom: 2px solid #4f7cff;
 }
 
 .table-cell {
-  padding: 8px 12px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 700;
+
 }
 
 .table-body {
