@@ -157,3 +157,9 @@ body {
   top: 0;
   left: 0;
 }
+
+.save-status {
+  align-self: center;
+  color: #a8adbd;
+  font-size: 14px;
+}

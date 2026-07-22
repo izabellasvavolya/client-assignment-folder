@@ -34,7 +34,12 @@ export default function App() {
   // create initial table data with 100 rows
   const [tableData, setTableData] = useState(getInitialTableData);
 
+  // unsaved messages status
+  const [saveMessage, setSaveMessage] = useState("");
+
   function handleCellChange(rowIndex, columnId, newValue) {
+    setSaveMessage("You have unsaved changes.");
+
     setTableData((prevTableData) => {
       // copy the previous table data
       const newTableData = [ ...prevTableData.data];
@@ -59,11 +64,14 @@ export default function App() {
 
   function handleSave() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(tableData));
+
+    setSaveMessage("Changes saved.");
   }
 
   function handleReset() {
     localStorage.removeItem(STORAGE_KEY);
     setTableData(createMockTableData(5000));
+    setSaveMessage("Changes reset.");
   }
 
 
@@ -83,6 +91,10 @@ return (
         <button className="reset-button" onClick={handleReset}>
           Reset
         </button>
+
+        <span className="save-status">
+            {saveMessage}
+        </span>
       </div>
     </div>
 
