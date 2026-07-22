@@ -40,15 +40,13 @@ const visibleColumns = useMemo(
     const gridTemplateColumns = useMemo(
     () =>
       visibleColumns
-        .map((column) => `${column.width ?? 150}px`)
+        .map((column) => `${column.width ?? 180}px`)
         .join(" "),
     [visibleColumns]
   );
 
   // Calculate which rows should be rendered
-  const visibleRowCount = Math.ceil(
-    TABLE_HEIGHT / ROW_HEIGHT
-  );
+  const visibleRowCount = Math.ceil(TABLE_HEIGHT / ROW_HEIGHT);
 
   const startIndex = Math.max(
     0,

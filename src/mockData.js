@@ -13,7 +13,7 @@ const columns = [
         title: "ID",
         type: "number",
         editable: false, // we can't edit the ID column
-        width: 80,
+        width: 90,
         ordinalNo: 1,
     },
 
@@ -21,7 +21,7 @@ const columns = [
         id: "name",
         title: "Name",
         type: "string",
-        width: 180,
+        width: 200,
         ordinalNo: 2,
     },
 
@@ -29,7 +29,7 @@ const columns = [
         id: "age",
         title: "Age",
         type: "number",
-        width: 100,
+        width: 110,
         ordinalNo: 3,
     },
 
@@ -37,14 +37,14 @@ const columns = [
         id: "department",
         title: "Department",
         type: "selection",
-        width: 160,
+        width: 200,
         ordinalNo: 4,
         options: departmentOptions
     },
     {   id: "active",
         title: "Active",
         type: "boolean",
-        width: 100,
+        width: 110,
         ordinalNo: 5,
     }
 ];

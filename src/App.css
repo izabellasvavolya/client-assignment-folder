@@ -150,12 +150,14 @@ body {
 
 .table-spacer {
   position: relative;
+  width: 100%;
 }
 
 .visible-rows {
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
 }
 
 .save-status {
